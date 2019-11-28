@@ -100,29 +100,38 @@ export class TryComponent implements OnInit {
     //そうでなければ未クリア状態に
     if (this.words.every(word => word.judge === "○")) {
       //問題クリア
-      this.answers.mark = true;
+      this.TrydataService.clear_word_listin(this.coil.id);
     }
-    else {
-      this.answers.mark = false;
-    }
-    //回答状態を更新
-    this.AnswersApi.find({
-      where: {
-        coilId: this.coil.id,
-        accountId: this.account.id
-      }
-    }).subscribe((answers: Answers[]) => {
-      if (answers.length === 0) {
-        this.answers.coilId = this.coil.id;
-        this.answers.accountId = this.account.id;
-        this.AnswersApi.replaceOrCreate(this.answers).subscribe((answers: Answers = new Answers) => {
-        });
-      } else {
-        answers[0].mark = this.answers.mark;
-        this.AnswersApi.replaceOrCreate(answers[0]).subscribe((answers: Answers = new Answers) => {
-        });
-      }
-    });
+    // this.TrydataService.clear_word['aa'] = clearword;
+    // this.answers.mark = true;
+    //   } else {
+    //     const clearword = {
+    //       coilID: this.coil.id,
+    //       mark: false
+    //     };
+    //     this.TrydataService.clear_word_listin(this.coil.id);
+    //     // this.TrydataService.clear_word = clearword;
+    //     // this.answers.mark = true;
+    //     // this.answers.mark = false;
+    //   }
+    //   //回答状態を更新
+    //   // this.AnswersApi.find({
+    //   //   where: {
+    //   //     coilId: this.coil.id,
+    //   //     accountId: this.account.id
+    //   //   }
+    //   // }).subscribe((answers: Answers[]) => {
+    //   //   if (answers.length === 0) {
+    //   //     this.answers.coilId = this.coil.id;
+    //   //     this.answers.accountId = this.account.id;
+    //   //     this.AnswersApi.replaceOrCreate(this.answers).subscribe((answers: Answers = new Answers) => {
+    //   //     });
+    //   //   } else {
+    //   //     answers[0].mark = this.answers.mark;
+    //   //     this.AnswersApi.replaceOrCreate(answers[0]).subscribe((answers: Answers = new Answers) => {
+    //   //     });
+    //   //   }
+    //   // });
   }
   //与えられたワードを英語で再生
   speech(word) {

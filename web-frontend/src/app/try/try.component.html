@@ -31,12 +31,12 @@
             <td>
               <!-- <font size="5" color="red">{{words[j].judge}}</font> -->
               <p class="judge" *ngIf="words[j].judge=='×'; else elseBlock" [@EnterLeave]="'flyIn'">
-                <font class="scoring"> {{words[j].judge}}{{words[j].example}}</font>
-                <button type="button" class="btn btn-danger scoring" (click)="speech(words[j].example) ">▶再生</button>
+                <font class="scoring" size="10"> {{words[j].judge}}{{words[j].example}}</font>
+                <!-- <button type="button" class="btn btn-danger scoring" (click)="speech(words[j].example) ">▶再生</button> -->
                 <!-- {{words[j].judge}} -->
               </p>
               <ng-template #elseBlock>
-                <font size="5" color="red">{{words[j].judge}}</font>
+                <font size="10" color="red">{{words[j].judge}}</font>
               </ng-template>
             </td>
 
@@ -59,7 +59,7 @@
   </p>
   <p *ngIf=condition>
     <button type="button" class="btn btn-danger result" (click)="init()">もう一度挑戦する</button>
-    <button type="button" class="btn btn-danger result" (click)="home()">別の問題へ</button>
+    <button type="button" class="btn btn-danger result" (click)="home()">別の問題選択へ</button>
     <button type="button" class="btn btn-danger result" (click)="review()">復習</button>
   </p>
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Coil, CoilApi, Answers, AnswersApi } from '../../../lb-sdk';
 import { AuthdataService } from '../authdata.service';
 import { ViewEncapsulation } from '@angular/core';
+import { TrydataService } from '../trydata.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,9 @@ export class HomeComponent implements OnInit {
   constructor(private CoilApi: CoilApi,
     private AnswersApi: AnswersApi,
     public AuthdataService: AuthdataService,
-    public changeDetectorRef: ChangeDetectorRef
+    public changeDetectorRef: ChangeDetectorRef,
+    public TrydataService: TrydataService
+
   ) { }
   coils: Coil[];
   ans_rate: number;
@@ -120,20 +123,19 @@ export class HomeComponent implements OnInit {
   }
   // 回答状態を確認
   state(id) {
-    let ans_state = this.answers.filter(function (item, index) {
-      if (item.coilId === id) {
-        return true;
-      }
-    });
-    if (ans_state.length > 0) {
-      //console.log(ans_state);
-      if (ans_state[0].mark && this.AuthdataService.account.id === ans_state[0].accountId) {
-        return true;
-      }
-      else {
-        return false;
-      }
+    // let ans_state = this.answers.filter(function (item, index) {
+    //   if (item.coilId === id) {
+    //     return true;
+    //   }
+    // });
+    //console.log(ans_state);
+    if (this.TrydataService.word_state(id)) {
+      return true;
     }
+    else {
+      return false;
+    }
+
   }
   // コイル式問題一覧を取得
   load_coils() {
