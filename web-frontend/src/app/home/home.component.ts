@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit {
   ans_state: any;
   levels: any = [
     {
+      en: "University_test",
+      ja: "大学(実験)",
+    },
+    {
       en: "Middle_school",
       ja: "中学",
     },
@@ -50,6 +54,10 @@ export class HomeComponent implements OnInit {
     }
   ];
   categorys: any = [
+    {
+      en: "Home_test",
+      ja: "家庭・暮らし(実験用)"
+    },
     {
       en: "Culture",
       ja: "文化・芸術"
@@ -159,7 +167,7 @@ export class HomeComponent implements OnInit {
       } else {
         this.ans_rate = 0;
       }
-      console.log(ans_count);
+      // console.log(ans_count);
 
     });
   }

@@ -94,6 +94,7 @@ export class TryComponent implements OnInit {
   speech_set: any;
   account: any;
   word_jpn: any;
+  keyword_jpn: any;
   //回答をの状態をチェックする
   answer() {
     //すべての回答が正解であれば、その問題はクリア
@@ -275,6 +276,14 @@ export class TryComponent implements OnInit {
   }
   ngOnInit() {
     (async () => {
+      await this.WordsApi.findOne({
+        where: {
+          eng: this.coil_keyword
+        }
+      }).subscribe((Words: Words) => {
+        this.keyword_jpn = Words.jpn;
+        // console.log(this.keyword_jpn);
+      });
       await this.loaddata();
     })();
   }
