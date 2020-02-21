@@ -95,6 +95,7 @@ export class TryComponent implements OnInit {
   account: any;
   word_jpn: any;
   keyword_jpn: any;
+  not_clear: any;
   //回答をの状態をチェックする
   answer() {
     //すべての回答が正解であれば、その問題はクリア
@@ -102,6 +103,10 @@ export class TryComponent implements OnInit {
     if (this.words.every(word => word.judge === "○")) {
       //問題クリア
       this.TrydataService.clear_word_listin(this.coil.id);
+      this.not_clear = false;
+    }
+    else {
+      this.not_clear = true;
     }
     // this.TrydataService.clear_word['aa'] = clearword;
     // this.answers.mark = true;
@@ -153,8 +158,14 @@ export class TryComponent implements OnInit {
   judge(row: number) {
     if (this.words[row].ans.toString() === this.words[row].en.toString()) {
       this.words[row].judge = "○";
+      if (this.words.every(word => word.judge === "○")) {
+        //問題クリア
+        this.TrydataService.clear_word_listin(this.coil.id);
+        this.not_clear = false;
+      }
     } else {
       this.words[row].judge = "×";
+      this.not_clear = true;
     }
     return
   }

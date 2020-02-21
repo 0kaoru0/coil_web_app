@@ -60,7 +60,7 @@
   <p *ngIf=condition>
     <button type="button" class="btn btn-danger result" (click)="init()">もう一度挑戦する</button>
     <button type="button" class="btn btn-danger result" (click)="home()">別の問題選択へ</button>
-    <button type="button" class="btn btn-danger result" (click)="review()">復習</button>
+    <button *ngIf=not_clear type="button" class="btn btn-danger result" (click)="review()">復習</button>
   </p>
 
 

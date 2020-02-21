@@ -35,12 +35,14 @@
             <input type=" text " class="word " [(ngModel)]="word.ans[i]" maxlength="1 " value={{i}} id="{{i}}" #input
               (keyup)="autofocus(i,$event)">
           </div>
+          <button type="button" class="btn btn-danger scoring" (click)="speech(miss_word) ">▶発音</button>
+
         </td>
         <td>
           <!-- <font size="5" color="red">{{words[j].judge}}</font> -->
           <p *ngIf="word.judge=='×'; else elseBlock">
             <font class="result">{{word.judge}}{{word.example}}</font>
-            <button type="button" class="btn btn-danger result" (click)="speech(word.example) ">▶再生</button>
+            <!-- <button type="button" class="btn btn-danger result" (click)="speech(miss_word) ">▶再生</button> -->
             <!-- {{words[j].judge}} -->
           </p>
           <ng-template #elseBlock>

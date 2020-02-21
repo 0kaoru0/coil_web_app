@@ -113,8 +113,8 @@ export class HomeComponent implements OnInit {
   ];
 
   sort_data: any = {
-    level: "Middle_school",
-    category: "Culture"
+    category: "Home_test",
+    level: "University_test"
   }
   // カテゴリ部分を変更されたときに検索条件を変更
   onClickCategory(event) {
